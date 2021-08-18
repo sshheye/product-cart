@@ -47,11 +47,11 @@ function TopNav() {
       <div className="flex items-center">
         <span className="md:hidden"><VscMenu/></span>
         <span className=" hidden md:block"><img className="h-11" src={luminLogo} alt="Lumin logo"/></span>
-        <ul className="hidden md:flex font-semibold pl-24 space-x-8 text-sm">
+        <ul className="hidden md:flex font-semibold pl-24 space-x-12 text-sm">
           <li><button className="text-black hover:text-gray-500 transition duration-300">Shop</button></li>
           <li><button className="text-black hover:text-gray-500 transition duration-300">About</button></li>
           <li><button className="text-black hover:text-gray-500 transition duration-300">Support</button></li>
-          <li><a href="https://www.luminskin.com/blog/" className="text-black hover:text-gray-500 transition duration-300">Blog</a></li>
+          <li><button className="text-black hover:text-gray-500 transition duration-300">Blog</button></li>
         </ul>
       </div>
       

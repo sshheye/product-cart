@@ -15,12 +15,12 @@ const customStyles = {
   content: {
     top: 0,
     right: 0,
-    left: '65%',
+    left: '62%',
     overflow: 'hidden',
     border: 'none',
     padding: 0,
     height: '100vh',
-    width:'500px'
+    width:'545px'
   },
   overlay: {
     background: 'rgba(209,213,210,0.71)',
@@ -60,7 +60,7 @@ function SelectCurrency(){
 
   return (
     <form className="ml-auto pt-6">
-      <select onChange={ (e) => changeCurrency(e)} className=" text-sm border py-2 px-2 pr-4" name="currency" id="currency" as="select">
+      <select onChange={ (e) => changeCurrency(e)} className="select-dropdown text-sm border py-2 px-2 pr-4" name="currency" id="currency" as="select">
         <option value={currentCurrency} defaultValue>{currentCurrency}</option>
         {
           currencies.map( currency => {

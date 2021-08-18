@@ -20,7 +20,16 @@ code {
 #top-nav {
   height: 64px !important;
 }
-
+#cars {
+  outline: 0px;
+  transition: all 0.2s ease 0s;
+  line-height: normal;
+  font-size: 1rem;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(205, 209, 206);
+  border-radius: 0px;
+  cursor: pointer;
+}
 .bg-white {
   background-color: rgb(252 252 250);
 }
@@ -43,4 +52,14 @@ code {
 
 .ReactModal__Content {
   width: 40px;
+}
+.text-black {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+}
+select{
+  outline: 0px;
+  border-radius: 0px;
+  cursor: pointer;
 }

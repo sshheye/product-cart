@@ -79,7 +79,7 @@ function ProductOptionsView(){
          
          {/* image */}
           <div className="text-center">
-            <img className="h-20 m-auto "  src={optionsToView.image_url} alt=""/>
+            <img className="h-12 m-auto "  src={optionsToView.image_url} alt=""/>
           </div>
 
           <div className="space-y-8 pt-6">

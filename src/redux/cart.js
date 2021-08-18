@@ -14,32 +14,13 @@ export const cartSlice = createSlice({
   reducers: {
 
     addToCart: (state, action) => {
-
       const product = action.payload;
-      const similarProduct = state.products.find(pr => pr.productId === product.productId && JSON.stringify(pr.options) === JSON.stringify(product.options));
+      const similarProduct = state.products.find(pr => pr.id === product.id && JSON.stringify(pr.options) === JSON.stringify(product.options));
       if (!!similarProduct) {
-        cartSlice.caseReducers.incrementProduct(state, similarProduct);
+        cartSlice.caseReducers.incrementProductCount(state, similarProduct);
       } else {
         cartSlice.caseReducers.addNewProduct(state, product);
       }
-    },
-
-    updateProducts(state, action) {
-
-      if(action.payload){
-        const products = state.products;
-        const newProducts = action.payload;
-        products.forEach(product => {
-          product.price = newProducts.products.find(pr => product.id === pr.id).price;
-        });
-        cartSlice.caseReducers.updateCartSummary(state, products);
-      }
-
-      
-    },
-
-    changeCurrentCurrency: (state, action) => {
-      state.currentCurrency = action.payload;
     },
 
     removeFromCart: (state, action) => {
@@ -53,7 +34,7 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.updateCartSummary(state, state.products);
     },
 
-    incrementProduct: (state, product) => {
+    incrementProductCount: (state, product) => {
       const productToIncrement = state.products.find(pr => pr.productId === product.productId);
       productToIncrement.count = productToIncrement.count + 1;
       cartSlice.caseReducers.updateCartSummary(state, state.products);
@@ -72,11 +53,23 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.updateCartSummary(state, products);
     },
 
+    updateProductsWithPrices(state, action) {
+      if (action.payload) {
+        const products = state.products;
+        const newProducts = action.payload;
+        products.forEach(product => {
+          product.price = newProducts.products.find(pr => product.id === pr.id).price;
+        });
+        cartSlice.caseReducers.updateCartSummary(state, products);
+      }
+    },
+
+    changeCurrentCurrency: (state, action) => {
+      state.currentCurrency = action.payload;
+    },
+
     /**
      *  Add the options of a product to the cart state
-     * The cart component will check this state and decide if it should display options for a product
-     * @param {*} state 
-     * @param {*} action 
      */
     setOptionsToView: (state, action) => {
       state.optionsToView = action.payload;
@@ -87,10 +80,10 @@ export const cartSlice = createSlice({
       state.products = products.sort((a, b) => { return b.productId - a.productId });
       state.totalPrice = totalPrice;
       state.totalItems = state.products.length;
-      state.optionsToView = {} // empty the product options object for re-use
+      state.optionsToView = {} // empty the product options object 
     },
 
-    clearOptionsView(state){
+    clearOptionsView(state) {
       state.optionsToView = {}
     },
 
@@ -98,13 +91,21 @@ export const cartSlice = createSlice({
       state.updateState = action.payload
     },
 
+    //todo move to modals redux
     closeModal: (state, action) => {
       state[action.payload] = false;
     }
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { updateProducts, addToCart, removeFromCart, decrementProductCount, setOptionsToView, changeCurrentCurrency, clearOptionsView } = cartSlice.actions
+export const {
+  addToCart,
+  removeFromCart,
+  decrementProductCount,
+  updateProductsWithPrices,
+  setOptionsToView,
+  changeCurrentCurrency,
+  clearOptionsView
+} = cartSlice.actions
 
 export default cartSlice.reducer

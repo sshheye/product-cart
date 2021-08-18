@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../redux/modals";
-import { addToCart, setOptionsToView, updateProducts } from "../redux/cart";
+import { addToCart, setOptionsToView, updateProductsWithPrices } from "../redux/cart";
 import { useQuery, gql } from "@apollo/client";
 import { useEffect } from "react";
 import getSymbolFromCurrency from 'currency-symbol-map'
@@ -33,12 +33,12 @@ const SingleProduct = (props) => {
   const { currentCurrency } = useSelector(state => state.cart);
 
 
-  // function to handle how a product is added to the cart
+  // handle how a product is added to the cart
   function handleAddToCart(productData) {
 
     const { product_options } = productData;
 
-    if (product_options.length < 1) {
+    if (!product_options.length) {
       // add the product to the cart
       dispatch(addToCart({ ...productData, options: [] }));
       dispatch(openModal('cart'));
@@ -89,12 +89,8 @@ function ProductList() {
   const { loading, error, data } = useQuery(ALL_PRODUCTS);
 
   useEffect(() => {
-    if (data) { dispatch(updateProducts(data)) }
+    if (data) { dispatch(updateProductsWithPrices(data)) }
   }, [currentCurrency, data, dispatch])
-
-
-
-
 
   if (loading || error) {
     return (
