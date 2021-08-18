@@ -29,8 +29,8 @@ export const cartSlice = createSlice({
       if(action.payload){
         const products = state.products;
         const newProducts = action.payload;
-        products.forEach(pr => {
-          pr.price = newProducts.products.find(pr => pr.id === pr.id).price;
+        products.forEach(product => {
+          product.price = newProducts.products.find(pr => product.id === pr.id).price;
         });
         cartSlice.caseReducers.updateCartSummary(state, products);
       }

@@ -40,3 +40,7 @@ code {
   opacity: 0;
   transform: translateX(100px);
 }
+
+.ReactModal__Content {
+  width: 40px;
+}

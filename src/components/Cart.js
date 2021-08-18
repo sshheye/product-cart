@@ -15,11 +15,12 @@ const customStyles = {
   content: {
     top: 0,
     right: 0,
-    left: '60%',
+    left: '65%',
     overflow: 'hidden',
     border: 'none',
     padding: 0,
     height: '100vh',
+    width:'500px'
   },
   overlay: {
     background: 'rgba(209,213,210,0.71)',
